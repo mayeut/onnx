@@ -65,6 +65,7 @@ jobs:
         fi
         python -m build --wheel
         delocate-wheel --require-archs x86_64,arm64 -w $(pwd)/protobuf -v dist/*.whl
+        ls -al $(pwd)/protobuf/
 
     - uses: actions/upload-artifact@65462800fd760344b1a7b4382951275a0abb4808 # v4.3.3
       with:
