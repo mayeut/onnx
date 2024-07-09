@@ -45,6 +45,7 @@ jobs:
     - name: Install Python dependencies
       run: |
         python -m pip install -q --upgrade pip
+        python -m pip install -q delocate==0.11.0
         python -m pip install -q -r requirements-release.txt
 
     - name: Build wheel and install
@@ -63,6 +64,7 @@ jobs:
           export ONNX_PREVIEW_BUILD=1
         fi
         python -m build --wheel
+        delocate-wheel --require-archs x86_64,arm64 -w $(pwd)/protobuf -v dist/*.whl
 
     - uses: actions/upload-artifact@65462800fd760344b1a7b4382951275a0abb4808 # v4.3.3
       with:
